@@ -36,7 +36,7 @@
 
 ### Remaining blockers
 
-- **3.4 — ожидается платформенный CI:** пользователь отдельно разрешил ветку `fix/wsl2-system-mount-disk-monitoring`, английский commit, push только в `Vnuchoke/openchamber-system-monitor` и PR в `main` этого же fork; ветка создана. Upstream, `main` и workflow не меняются, merge не разрешён. Задача остаётся открытой до успешных Ubuntu/macOS/Windows и ограниченного container jobs. Локальный Docker daemon доступен, но `node:22-alpine` отсутствует; образ не загружался.
+- **3.4 — ожидается платформенный CI:** реализация опубликована коммитом `820ef9f` в [PR #1 своего fork](https://github.com/Vnuchoke/openchamber-system-monitor/pull/1), ветка `fix/wsl2-system-mount-disk-monitoring`, base `main`. Первый check AccessLint прошёл, но GitHub блокировал workflows в fork (0 workflows/0 runs), что подтверждено баннером Actions. Пользователь отдельно разрешил включение существующих workflows; оно выполнено штатной кнопкой GitHub, теперь CI зарегистрирован. Обновление этого журнала отправляется для события `pull_request.synchronize`; задача остаётся открытой до успешной матрицы. Upstream, `main` и файл workflow не меняются, merge не разрешён. Новые untracked каталоги агентских инструментов в рабочем дереве не включаются в коммиты. Локальный Docker-образ не загружался.
 
 ## Workflow follow-up
 
