@@ -2,13 +2,13 @@ node_modules/
 .DS_Store
 *.log
 
-*/.agents/skills/openspec-*/
-*/.agents/skills/.openspec-*
-*/.claude/commands/opsx/
-*/.claude/skills/openspec-*/
-*/.opencode/commands/opsx-*
-*/.opencode/skills/openspec-*/
-*/.opencode/plugins/graphify.js
+**/.agents/skills/openspec-*/
+**/.agents/skills/.openspec-*
+**/.claude/commands/opsx/
+**/.claude/skills/openspec-*/
+**/.opencode/commands/opsx-*
+**/.opencode/skills/openspec-*/
+**/.opencode/plugins/graphify.js
 
 # Created by https://www.toptal.com/developers/gitignore/api/jetbrains+all,visualstudiocode
 # Edit at https://www.toptal.com/developers/gitignore?templates=jetbrains+all,visualstudiocode
