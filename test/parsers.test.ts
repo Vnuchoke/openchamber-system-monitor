@@ -203,9 +203,11 @@ describe('disks', () => {
     '/data',
     '/usr/src/linux-headers-6.18.58.1-generic',
     '/usr/src/linux-headers-6.18.58.1-microsoft-standard-WSL2-backup',
+    '/usr/src/linux-headers-6.18.58.1-microsoft-standard-WSL2' + ' ',
     '/opt/linux-tools/6.18.54.1-microsoft-standard-WSL2',
     '/usr/lib/linux-tools/custom',
     '/usr/lib/linux-tools/6.18.54.1-microsoft-standard-WSL2-backup',
+    '/usr/lib/linux-tools/6.18.54.1-microsoft-standard-WSL2' + ' ',
     '/usr/lib/linux-tools/6.18.54.1-microsoft-standard-WSL2/data',
     '/usr/lib/linux-tools/-microsoft-standard-WSL2',
   ])('Linux preserves an ordinary full disk at %s', (mount) => {
