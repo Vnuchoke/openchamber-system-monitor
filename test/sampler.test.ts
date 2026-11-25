@@ -82,9 +82,14 @@ const harness = () => {
 };
 
 describe('sampler', () => {
-  test.each([false, true])('WSL2 does not affect disk state, ordinary full /data=%s', async (fullData) => {
+  test.each([
+    ['linux-wsl2-df.txt', false],
+    ['linux-wsl2-df.txt', true],
+    ['linux-wsl2-headers-df.txt', false],
+    ['linux-wsl2-headers-df.txt', true],
+  ] as const)('%s does not affect disk state, ordinary full /data=%s', async (fixture, fullData) => {
     const h = harness();
-    const text = readFileSync(new URL('./fixtures/linux-wsl2-df.txt', import.meta.url), 'utf8')
+    const text = readFileSync(new URL(`./fixtures/${fixture}`, import.meta.url), 'utf8')
       + '\n/dev/sda1 1000 400 600 40% /'
       + (fullData ? '\n/dev/sdc1 200 200 0 100% /data' : '');
     h.values.disks = () => linuxDisks(parseDf(text), false);

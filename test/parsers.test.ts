@@ -191,8 +191,18 @@ describe('disks', () => {
     });
   }
 
+  test.each([false, true])('Linux excludes WSL2 headers before deduplication, container=%s', (container) => {
+    const ordinary = '/data/ordinary-disk-with-a-mount-longer-than-the-wsl2-linux-headers-system-mount';
+    const text = fixture('linux-wsl2-headers-df.txt')
+      + `\n${container ? 'overlay' : '/dev/sda1'} 1000 400 600 40% /`
+      + `\n/dev/sdb 99148 99148 0 100% ${ordinary}`;
+    expect(linuxDisks(parseDf(text), container).map((disk) => disk.mount)).toEqual(['/', ordinary]);
+  });
+
   test.each([
     '/data',
+    '/usr/src/linux-headers-6.18.58.1-generic',
+    '/usr/src/linux-headers-6.18.58.1-microsoft-standard-WSL2-backup',
     '/opt/linux-tools/6.18.54.1-microsoft-standard-WSL2',
     '/usr/lib/linux-tools/custom',
     '/usr/lib/linux-tools/6.18.54.1-microsoft-standard-WSL2-backup',
