@@ -34,11 +34,11 @@
 - Приёмка OpenChamber: пользователь предоставил адрес настоящего web host и возобновил Browser MCP. В Settings → Extensions подтверждён Folder-source `/home/dev/code/personal/projects/openchamber-system-monitor`, v1.0.2, Enabled. Процесс сервиса из этого checkout стартовал 09:20:05 +0300 после пересборки bundle 09:05:40 +0300 (перезапуск серверной сессии уже загрузил новый код, повторное отключение расширения не требовалось). Accessibility snapshots настоящих panel/status frames показывают только `/` около 6%, без служебного mount и критического баннера; после закрытия панели у кнопки System Monitor нет badge. Обычный read-only том отдельно на оборудовании не проверен. Preview повторно не запускался.
 - Артефакты: `openspec validate fix-wsl2-system-mount-disk-monitoring --strict` и `git diff --check` — exit 0. Все 12 implementation-задач выполнены; недоступные необязательные инструменты качества и отдельная аппаратная проверка обычного read-only тома отмечены выше, а не выданы за проведённые проверки.
 
-### CI verification
+### CI verification (только исходная реализация linux-tools)
 
 - Реализация опубликована коммитом `820ef9f` в [PR #1 своего fork](https://github.com/Vnuchoke/openchamber-system-monitor/pull/1), ветка `fix/wsl2-system-mount-disk-monitoring`, base `main`. GitHub первоначально блокировал workflows в fork; пользователь отдельно разрешил их включение, выполненное штатной кнопкой GitHub. AccessLint не использовался как замена проектному CI.
 - [CI run 41401356374](https://github.com/Vnuchoke/openchamber-system-monitor/actions/runs/41401356374) для `7ee768d44a9fd2824840d6e3542a2ecdb8a49a39` завершился `success`: Ubuntu, macOS и Windows прошли typecheck/tests/build и оба smoke под Node 22/Bun; Ubuntu дополнительно подтвердил актуальность `dist/`. `Linux container with limits` успешно выполнил build и smoke с заданными CPU/memory limits. Все четыре job и их необходимые шаги независимо сверены через `gh run view`.
-- После implementation-коммита менялся только журнал OpenSpec; идентичность `src/`, `test/`, `dist/`, manifest/lockfile и workflow проверена `git diff --exit-code 820ef9f HEAD -- src test dist package.json bun.lock .github/workflows/ci.yml`. Upstream, `main` и файл workflow не менялись; merge не разрешён. Новые untracked каталоги агентских инструментов не включались в коммиты. Локальный Docker-образ не загружался.
+- На момент этой проверки код, тесты и сборка совпадали с `820ef9f`. Этот прогон не проверял последующие изменения для `linux-headers` и дополнительный вызов `df -a` в [PR #4](https://github.com/fuchs-alexander/openchamber-system-monitor/pull/4). Актуальные результаты следует смотреть в Checks и в описании PR #4.
 
 ## Workflow follow-up
 
